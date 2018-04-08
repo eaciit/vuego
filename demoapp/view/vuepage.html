@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Go Vue</title>
+  </head>
+  <body>
+    {{  if (eq .module "") }}
+    Module is empty
+    {{ else }}
+    <div id="app">
+    </div>
+    <script src="/dist/{{ .module }}-main.js"></script>
+    {{ end }}
+  </body>
+</html>
