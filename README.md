@@ -1,6 +1,6 @@
 # VueGo
 
-> A Vue + Golang Project
+A Vue + Golang Project
 
 ## Build Setup
 
