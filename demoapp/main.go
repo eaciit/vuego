@@ -33,23 +33,24 @@ func main() {
 		"/": VuePage("", "vuepage.html"),
 	}
 	knot.StartAppWithFn(
-		App("demo", clit.Config("", "workingdir", clit.ExeDir()).(string)),
+		App("demo",
+			strings.Replace(clit.Config("", "workingdir", clit.ExeDir()).(string), "{exeDir}", clit.ExeDir(), -1)),
 		host, functions)
 }
 
 func App(name, wd string, controllers ...interface{}) *knot.App {
+
+	// App initialization
 	app := knot.NewApp(name)
 	app.Static("asset", filepath.Join(wd, "asset"))
 	app.Static("dist", filepath.Join(wd, "dist"))
 	app.Static("view", filepath.Join(wd, "view"))
 	app.ViewsPath = filepath.Join(wd, "view")
 
-	/*
-		Change below to true to use validation, and ensure login and noaccess has no-validation
-	*/
+	// Change below to true to use validation, and ensure login and noaccess has no-validation
 	app.SetValidation(true, func(k *knot.WebContext) bool {
 		url := k.Request.URL
-		if url.Path == "login" || url.Path == "noaccess" {
+		if url.Path == "/login" || url.Path == "/noaccess" {
 			return true
 		}
 
@@ -71,6 +72,7 @@ func App(name, wd string, controllers ...interface{}) *knot.App {
 		}
 	})
 
+	// controller registration
 	for _, c := range controllers {
 		if err := app.Register(c); err != nil {
 			log.Errorf("controller registration error. %s", err.Error())
@@ -84,8 +86,8 @@ func App(name, wd string, controllers ...interface{}) *knot.App {
 func VuePage(layout, view string) knot.FnContent {
 	return func(c *knot.WebContext) interface{} {
 		uri := c.Request.URL
-		module := strings.Trim(uri.Path, " ")
-		if module == "" || module == "/" {
+		module := strings.Trim(uri.Path, " ")[1:]
+		if module == "" {
 			module = "home"
 		}
 

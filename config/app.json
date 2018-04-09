@@ -1,4 +1,5 @@
 {
     "host":":9123",
-    "workingdir":"/Users/ariefdarmawan/Projects/vuego/demoapp"
+    "_workingdir":"{exeDir}",
+    "workingdir":"/Users/ariefdarmawan/Go/src/eaciit/vuego/demoapp"
 }
