@@ -8,6 +8,8 @@ import (
 	knot "github.com/eaciit/knot/knot.v1"
 	"github.com/eaciit/toolkit"
 
+	controller "eaciit/vuego/demoapp/controller"
+
 	"github.com/eaciit/clit"
 )
 
@@ -30,11 +32,12 @@ func main() {
 	log.Infof("Serving on host: %s", host)
 
 	functions := map[string]knot.FnContent{
-		"/": VuePage("", "vuepage.html"),
+		"/": VuePage("_simple.html", "vuepage.html"),
 	}
 	knot.StartAppWithFn(
 		App("demo",
-			strings.Replace(clit.Config("", "workingdir", clit.ExeDir()).(string), "{exeDir}", clit.ExeDir(), -1)),
+			strings.Replace(clit.Config("", "workingdir", clit.ExeDir()).(string), "{exeDir}", clit.ExeDir(), -1),
+			new(controller.ACL)),
 		host, functions)
 }
 
@@ -48,7 +51,7 @@ func App(name, wd string, controllers ...interface{}) *knot.App {
 	app.ViewsPath = filepath.Join(wd, "view")
 
 	// Change below to true to use validation, and ensure login and noaccess has no-validation
-	app.SetValidation(true, func(k *knot.WebContext) bool {
+	app.SetValidation(false, func(k *knot.WebContext) bool {
 		url := k.Request.URL
 		if url.Path == "/login" || url.Path == "/noaccess" {
 			return true
@@ -96,7 +99,7 @@ func VuePage(layout, view string) knot.FnContent {
 		c.Config.LayoutTemplate = layout
 
 		data := toolkit.M{}
-		data.Set("module", module)
+		data.Set("module", module+"-main.js?"+toolkit.RandomString(32))
 		return data
 	}
 }

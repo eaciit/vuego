@@ -1,0 +1,30 @@
+/*
+.ec-login{
+  margin:20px auto;
+  width:350px;
+  padding:10px;
+  border:solid 1px #AAA;
+  font-size:10px;
+}
+
+.ec-login>div.result{
+  text-align: 'right'; 
+  width:'100%';
+  padding:2;
+  color:"maroon";
+}
+*/
+
+.row{
+  margin-bottom: 0px;
+}
+
+.validator{
+  font-size:80%;
+  color:maroon;
+  text-align:right;
+}
+
+.hide{
+  visibility: hidden;
+}

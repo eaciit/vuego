@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LibDemo</title>
+  <link href='{{BaseUrl}}asset/css/bootstrap.min.css' rel='stylesheet'>
+  <link href='{{BaseUrl}}asset/materializecss/materialize.min.css' rel='stylesheet'>
+  <link rel='stylesheet' href='{{ NoCacheUrl "asset/css/app.css" }}'>
+</head>
+<body>
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark indigo">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">Demo</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" 
+        data-toggle="collapse" 
+        data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false" 
+        aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" 
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </li>
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form -->
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+<script type="text/javascript" src="{{BaseUrl}}asset/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{BaseUrl}}asset/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{BaseUrl}}asset/materializecss/materialize.min.js"></script>
+
+<main>
+  <div class="container-fluid" style="margin-top:5px;">
+      {{.Content}}
+  </div>
+</main>
+</body>
+</html>
