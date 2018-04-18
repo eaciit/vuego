@@ -51,7 +51,7 @@ func App(name, wd string, controllers ...interface{}) *knot.App {
 	app.ViewsPath = filepath.Join(wd, "view")
 
 	// Change below to true to use validation, and ensure login and noaccess has no-validation
-	app.SetValidation(false, func(k *knot.WebContext) bool {
+	app.SetValidation(true, func(k *knot.WebContext) bool {
 		url := k.Request.URL
 		if url.Path == "/login" || url.Path == "/noaccess" {
 			return true

@@ -50,7 +50,7 @@ Vue.use(VueResource)
 
 export default {
   name: 'loginform',
-  props:['loginUrl'],
+  props:['loginUrl','sourceUrl'],
   data () {
     return {
         loginData: {userID: '', password: '', rememberMe: false},
@@ -73,7 +73,8 @@ export default {
                         this.result.message="Invalid response from " + this.loginUrl + JSON.stringify(r);
                     }else{
                         this.result.status="OK";
-                        this.result.message="Login Success"
+                        this.result.message="Login Success. You will be redircted to " + this.sourceUrl + " shortly";
+                        window.location=this.sourceUrl;
                     }
                 }, 
                 e=>{

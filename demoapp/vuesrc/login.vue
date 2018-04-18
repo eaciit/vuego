@@ -1,6 +1,6 @@
 <template>
 <div id="login">
-    <auth login-url="/acl/auth" register-url="/acl/register" forget-url="/acl/forget" />
+    <auth login-url="/acl/auth" register-url="/acl/register" forget-url="/acl/forget" sourceUrl="/" />
 </div>
 </template>
 
@@ -11,8 +11,16 @@ export default {
   components:{
       "auth":auth
   },
+  methods:{
+  },
   data () {
     return {}
   }
 }
 </script>
+
+<style>
+  #login{
+     margin:0px auto;
+  }
+</style>

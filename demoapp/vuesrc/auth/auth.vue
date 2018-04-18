@@ -1,7 +1,7 @@
 <template>
     <div>
         <register @change-mode='onModeChanged' v-if="mode=='register'" :register-url='registerUrl' />
-        <login @change-mode='onModeChanged' v-if="mode=='login'" :login-url='loginUrl' />
+        <login @change-mode='onModeChanged' v-if="mode=='login'" :login-url='loginUrl' :source-url='sourceUrl' />
         <forget @change-mode='onModeChanged' v-if="mode=='forget'" :forget-url='forgetUrl'  />
     </div>
 </template>
@@ -22,7 +22,7 @@ export default {
             mode:"login"
         }
     },
-    props:['loginUrl','forgetUrl','registerUrl'],
+    props:['loginUrl','forgetUrl','registerUrl','sourceUrl'],
     components:{
         "login":LoginForm,
         "register":RegisterForm,
